@@ -1,0 +1,277 @@
+show databases;
+create database Blinkit_Project1;
+use Blinkit_Project1;
+drop database Blinkit_Project1; 
+
+show tables;
+select * from sql_blinkit_project16875985390;
+rename table sql_blinkit_project16875985390 to analysis;
+drop table analysis;
+
+select item_identifier,Item_Type  from analysis where Item_Identifier='DRC01';
+select item_identifier from analysis;
+
+select distinct(Item_Type) from analysis;
+select * from analysis;
+
+select item_type,count(item_identifier)
+from analysis group by Item_Type; 
+select distinct(Item_Type),Item_MRP from analysis;
+select * from analysis;
+
+#Q1 import data from csv file
+
+#Q2 Write an SQL query to show all Item_Identifier
+select item_identifier from analysis;
+
+#Q3 Write an SQL query to show count of total Item_Identifier
+select count(item_identifier) from analysis;
+
+#Q4 Write an SQL query to show maximum Item Weight. 
+select max(item_weight) from analysis;  #21.35
+
+#Q5 5. Write an SQL query to show minimum Item Weight.
+select min(item_weight) from analysis; #4.555
+
+#Q6. Write an SQL query to show average Item_Weight.
+select avg(item_weight) from analysis;
+
+#Q7 Write an SQL query to show count of Item_Fat_Content WHERE Item_Fat_Content is Low Fat
+select Item_Fat_Content,count(Item_Fat_Content) 
+from analysis where Item_Fat_Content="Low Fat";
+
+select Item_Fat_Content,count(Item_Fat_Content)
+from analysis 
+where Item_Fat_Content in("Low Fat","LF") 
+group by Item_Fat_Content;
+
+#Q8 Write an SQL query to show count of Item_Fat_Content WHERE Item_Fat_Content is Regular
+select Item_Fat_Content,count(Item_Fat_Content) 
+from analysis 
+where Item_Fat_Content='Regular';
+
+select Item_Fat_Content,count(Item_Fat_Content)
+from analysis 
+where Item_Fat_Content 
+in('Regular',"reg") 
+group by Item_Fat_Content;
+
+#Q9 Write an SQL query to show maximum Item_MRP 
+
+select max(Item_mrp) from analysis;
+
+select Item_TYPE ,max(Item_mrp) from analysis group by Item_Type ; 
+
+#Q10 Write an SQL query to show minimum Item_MRP 
+select min(Item_mrp) from analysis;
+
+#Q11 Write an SQL query to show Item_Identifier , Item_Fat_Content ,Item_Type, Item_MRP whose Item_MRP is greater than 200.
+
+select item_identifier,Item_Fat_Content,Item_Type,Item_Type,Item_MRP 
+from analysis 
+where Item_MRP>200;
+
+select * from analysis;
+
+#Q12 Write an SQL query to show maximum Item_MRP WHERE Item_Fat_Content is Low Fat 
+
+select Item_Fat_Content,max(item_mrp) from analysis where Item_Fat_Content="low fat";
+
+select max(item_mrp) from analysis where Item_Fat_Content="low fat";
+
+#Q13 Write an SQL query to show minimum Item_MRP whose Item_Fat_Content is Low Fat 
+
+
+select Item_Fat_Content,min(item_mrp) 
+from analysis 
+where Item_Fat_Content="low fat";
+
+select min(item_mrp) from analysis where Item_Fat_Content="low fat";
+
+#Q14 4. Write an SQL query to show ALL DATA WHERE item MRP is BETWEEN 50 to 100
+
+select * from analysis where Item_MRP between 50 and 100;
+
+select Item_MRP from analysis where Item_MRP between 50 and 100;
+
+#Q15 Write an SQL query to show ALL UNIQUE value of Item_Fat_Content 
+select distinct(Item_Fat_Content) from analysis;
+
+#Q16 . Write an SQL query to show ALL UNIQUE value of Item_Type
+select distinct(Item_Type) from analysis;
+
+#Q17 Write an SQL query to show ALL DATA in descending ORDER by Item MRP 
+
+select * from analysis order by Item_MRP desc;
+
+#Q18 Write an SQL query to show ALL DATA in ascending ORDER by Item_Outlet_Sales 
+
+select * from analysis  order by Outlet_Location_Type asc;
+
+#Q19 Write an SQL query to show ALL DATA in ascending by Item_Type
+select * from analysis 
+order by Item_Type asc;
+
+#Q20 Write an SQL query to show DATA of item_type dairy & Meat 
+select Item_Type from analysis 
+where Item_Type in ('dairy','meat');
+
+#Q21 Write an SQL query to show ALL UNIQUE value of Outlet_Size 
+select distinct(Outlet_Size) from analysis;
+
+#Q22 . Write an SQL query to show ALL UNIQUE value of Outlet_Location_Type 
+
+select distinct(Outlet_Location_Type) from analysis;
+
+#Q23 Write an SQL query to show ALL UNIQUE value of Outlet_Type 
+select distinct(Outlet_Type) from analysis;
+
+#Q24 Write an SQL query to show count of number of items by Item_Type and order it in descending order 
+
+select Item_Type,count(item_type) 
+from analysis 
+group by item_type 
+order by count(item_type) desc;
+
+#Q24
+select Item_Type,count(item_type) from analysis group by Item_Type  order by  count(item_type) desc;
+
+#Q25 Write an SQL query to show count of number of items by Outlet_Size and ordered it in ascending order
+select Outlet_Size ,count(Outlet_Size) 
+from analysis 
+group by Outlet_Size  
+order by  count(Outlet_Size) asc;
+
+#Q26 Write an SQL query to show count of number of items by Outlet_Type and ordered it in descending order.  
+select Outlet_Type ,count(Outlet_Type) 
+from analysis 
+group by Outlet_Type  
+order by  count(Outlet_Type) desc;
+
+#Q27 Write an SQL query to show count of items by Outlet_Location_Type and order it indescending order
+select Outlet_Location_Type,count(Outlet_Location_Type) 
+from analysis 
+group by Outlet_Location_Type 
+order by count(Outlet_Location_Type) desc;
+
+#Q28 Write an SQL query to show maximum MRP by Item_Type  and #Q29
+select Item_Type , max(item_MRP) from analysis group by item_type;
+
+#Q30 and #Q31 Write an SQL query to show minimum MRP by Outlet_Establishment_Year and order it in descending order. 
+
+select Outlet_Establishment_Year , max(item_MRP) 
+from analysis 
+group by Outlet_Establishment_Year
+order by Outlet_Establishment_Year desc; 
+
+#Q32 Write an SQL query to show average MRP by Outlet_Size and order it in descending order
+select Outlet_Size , avg(item_MRP) 
+from analysis 
+group by Outlet_Size 
+order by Outlet_Size desc; 
+
+#Q33 Write an SQL query to Average MRP by Outlet_Type and ordered in ascending order.
+select Outlet_type, avg(item_MRP) 
+from analysis 
+group by Outlet_type 
+order by Outlet_type desc; 
+
+#Q34 Write an SQL query to show maximum MRP by Outlet_Type 
+select Outlet_Type , max(item_MRP) 
+from analysis 
+group by Outlet_Type; 
+
+#Q35 Write an SQL query to show maximum Item_Weight by Item_Type 
+select Item_Type , max(Item_Weight) 
+from analysis 
+group by Item_Type;
+
+#Q36 Write an SQL query to show maximum Item_Weight by Outlet_Establishment_Year
+select Outlet_Establishment_Year , max(Item_Weight) 
+from analysis 
+group by Outlet_Establishment_Year; 
+
+#Q37 Write an SQL query to show minimum Item_Weight by Outlet_Type 
+
+select outlet_type, min(item_weight) from analysis group by Outlet_Type;
+
+#Q38 Write an SQL query to show average Item_Weight by Outlet_Location_Type and arrange it by descending orde
+select Outlet_Location_Type,avg(Item_Weight) 
+from analysis 
+group by Outlet_Location_Type 
+order by avg(Item_Weight) desc;
+
+#Q39 Write an SQL query to show maximum Item_Outlet_Sales by Item_Type
+select item_type, max(Item_Outlet_Sales) 
+from analysis froup 
+group by Item_Type;
+
+#Q40 Write an SQL query to show minimum Item_Outlet_Sales by Item_Type
+select item_type, min(Item_Outlet_Sales) 
+from analysis froup 
+group by Item_Type;
+
+#Q41 Write an SQL query to show minimum Item_Outlet_Sales by Outlet_Establishment_Year 
+select Outlet_Establishment_Year, min(Item_Outlet_Sales) 
+from analysis froup 
+group by Outlet_Establishment_Year;
+
+#Q42 Write an SQL query to show maximum Item_Outlet_Sales by Outlet_Establishment_Year and order it by descending order 
+
+select Outlet_Establishment_Year, max(Item_Outlet_Sales) 
+from analysis froup 
+group by Outlet_Establishment_Year 
+order by max(Item_Outlet_Sales) desc;
+
+#Q43 Write an SQL query to show average Item_Outlet_Sales by Outlet_Size and order it it descending order 
+select outlet_size, avg(item_outlet_sales) 
+from analysis 
+group by Outlet_Size;
+
+ #Q44 Write an SQL query to show average Item_Outlet_Sales by Outlet_Type 
+select outlet_type, avg(item_outlet_sales) 
+from analysis 
+group by Outlet_Type;
+
+#Q45 Write an SQL query to show maximum Item_Outlet_Sales by outlet_Type 
+
+select outlet_type,max(item_outlet_sales)
+from analysis 
+group by Outlet_Type ;
+
+#Q46 Write an SQL query to show total Item_Outlet_Sales by Item_Type 
+select Item_Type ,sum(item_outlet_sales) 
+from analysis 
+group by item_Type ;
+ 
+#Q47 Write an SQL query to show total Item_Outlet_Sales by Item_Fat_Content 
+select Item_Fat_Content,sum(item_outlet_sales) 
+from analysis 
+group by Item_Fat_Content;
+
+#Q48 Write an SQL query to show maximum Item_Visibility by Item_Type 
+select item_type, max(Item_Visibility) 
+from analysis 
+group by Item_Type ;
+
+#Q49 Write an SQL query to show Minimum Item_Visibility by Item_Type
+select item_type, min(Item_Visibility) 
+from analysis 
+group by Item_Type ;
+
+#Q50 Write an SQL query to show total Item_Outlet_Sales by Item_Type but only WHERE Outlet_Location_Type is Tier 1 
+
+select Item_Type ,sum(item_outlet_sales) 
+from analysis 
+where Outlet_Location_Type='Tier 1' 
+group by item_Type  ;
+
+#Q51 Write an SQL query to show total Item_Outlet_Sales by Item_Type WHERE Item_Fat_Content is ONLY Low Fat & LF
+select Item_Type ,sum(Item_Fat_Content) 
+from analysis 
+where Item_Fat_Content in ('LOW FAT','LF') 
+group by item_Type ;
+
+
+
+select * from analysis;
